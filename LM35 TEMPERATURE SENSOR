@@ -1,0 +1,8 @@
+from gpiozero import MCP3008
+from Ɵme import sleep
+sensor = MCP3008(channel=0, max_voltage=3.3)
+while True:
+voltage = sensor.value * 3.3
+temperature = voltage * 100
+print("Temperature:", round(temperature, 1), "°C")
+sleep(1)
