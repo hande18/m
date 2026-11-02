@@ -1,0 +1,8 @@
+from gpiozero import MoƟonSensor
+pir = MoƟonSensor(17)
+print("WaiƟng for moƟon...")
+while True:
+pir.wait_for_moƟon()
+print("MoƟon Detected!")
+pir.wait_for_no_moƟon()
+print("No MoƟon")
