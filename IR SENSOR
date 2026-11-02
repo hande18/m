@@ -1,0 +1,9 @@
+ from gpiozero import DigitalInputDevice
+from Ɵme import sleep
+ir = DigitalInputDevice(23, pull_up=False)
+while True:
+if not ir.value:
+print("Object Detected!")
+else:
+print("No Object Detected.")
+sleep(0.5)
