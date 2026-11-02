@@ -1,0 +1,25 @@
+import paho.mqƩ.client as mqƩ
+import json
+# Called when client connects to broker
+def on_connect(client, userdata, flags, rc):
+print(" Connected with result code", rc)
+client.subscribe("rpi5/dht11/data") # Subscribe to
+your topic
+# Called when message is received
+def on_message(client, userdata, msg):
+try:
+data = json.loads(msg.payload.decode())
+temperature = data.get("temperature")
+humidity = data.get("humidity")
+print(f"Temp: {temperature}°C | Humidity:
+{humidity}%")
+except ExcepƟon as e:
+print("Error decoding message:", e)
+# Set up MQTT client
+client = mqƩ.Client()
+client.on_connect = on_connect
+client.on_message = on_message
+# Connect to public broker
+client.connect("broker.hivemq.com", 1883, 60)
+# Keep listening forever
+client.loop_forever()
